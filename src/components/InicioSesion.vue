@@ -1,5 +1,25 @@
 <template>
-    <v-container class="contenedor py-10">
+  <v-app>
+    
+    <v-toolbar
+     style="width: 50%;"
+    >
+    <img src="/src/assets/logosena.png" alt="">
+
+      <v-toolbar-title>Vuetify</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-export</v-icon>
+      </v-btn>
+    </v-toolbar>
+ 
+  <v-container class="contenedor py-10">
+    <div>
+      
+    </div>
+      
       <v-row class="justify-center">
         <v-col cols="12" sm="8" md="6" lg="4">
           <v-card class="pa-6" elevation="10">
@@ -43,7 +63,7 @@
   
             <v-card-actions class="justify-center">
               <span class="no-account-text">¿No tienes una cuenta?</span>
-              <v-btn color="secondary" @click="goToRegister">
+              <v-btn color="#27ae60 " @click="goToRegister">
                 <v-icon left>mdi-account-plus</v-icon>Regístrate aquí
               </v-btn>
             </v-card-actions>
@@ -51,6 +71,9 @@
         </v-col>
       </v-row>
     </v-container>
+  </v-app>
+   
+   
   </template>
   
   <script>
@@ -96,16 +119,10 @@
   </script>
   
   <style scoped>
-  .contenedor {
-    background-color: #5a9bb9;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  
   
   .btn {
-    background-color: #5a9bb9;
+    background-color: #088f1e;
     color: white;
   }
   

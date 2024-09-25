@@ -23,31 +23,18 @@
                 <v-text-field v-model="paqueteUsuario.password" label="Contraseña" outlined dense clearable
                   prepend-inner-icon="mdi-lock" type="password" color="black" class="text-black"
                   :rules="passwordRules"></v-text-field>
-                  <v-text-field
-                  v-model="paqueteUsuario.estrato"
-                  label="Estrato"
-                  outlined
-                  dense
-                  clearable
-                  prepend-inner-icon="mdi-home-city"
-                  type="number"
-                  color="primary"
-                  class="text-black"
-                  :rules="[v => !!v || 'El estrato es requerido']"
-                ></v-text-field>
 
-                <v-text-field
-                  v-model="paqueteUsuario.edad"
-                  label="Edad"
-                  outlined
-                  dense
-                  clearable
-                  prepend-inner-icon="mdi-cake"
-                  type="number"
-                  color="primary"
-                  class="text-black"
-                  :rules="[v => !!v || 'La edad es requerida']"
-                ></v-text-field>
+                <v-select v-model="paqueteUsuario.regional" :items="regionales" label="Seleccione su Regional " item-title="nombre"
+                  item-value="id" color="black" class="text-black" prepend-inner-icon="mdi-account"
+                  :rules="[v => !!v || 'La regional es requerida']" required></v-select>
+
+                <v-text-field v-model.number="paqueteUsuario.estrato" label="Estrato" outlined dense clearable
+                  prepend-inner-icon="mdi-home-city" type="number" color="primary" class="text-black"
+                  :rules="[v => !!v || 'El estrato es requerido']"></v-text-field>
+
+                <v-text-field v-model.number="paqueteUsuario.edad" label="Edad" outlined dense clearable
+                  prepend-inner-icon="mdi-cake" type="number" color="primary" class="text-black"
+                  :rules="[v => !!v || 'La edad es requerida']"></v-text-field>
 
                 <v-card-actions class="justify-center">
                   <v-btn @click="crearUsuario" class="mt-6 btn" block>
@@ -75,11 +62,13 @@ export default {
         usuario: null,
         email: null,
         password: null,
-        estrato:null,
+        estrato: null,
         edad: null,
-        rol:{id:2}
+        regional:null,
+        rol: { id: 2 }
       },
       validRegister: false,
+      regionales:[],
       emailRules: [
         v => !!v || 'Correo electrónico es requerido',
         v => /.+@.+\..+/.test(v) || 'Correo electrónico inválido'
@@ -95,7 +84,7 @@ export default {
       if (!this.$refs.formRegister.validate()) return;
 
       try {
-    
+
         const apiUrl = `${import.meta.env.VITE_APP_API}/auth/registro`;
         await axios.post(apiUrl, this.paqueteUsuario);
 
@@ -106,14 +95,14 @@ export default {
           confirmButtonText: 'Aceptar'
         });
 
-        
+
         this.$router.push('/');
         this.resetForm();
 
       } catch (error) {
         console.error('Error al registrar el usuario:', error);
 
-     
+
         Swal.fire({
           title: 'Error',
           text: 'No se pudo registrar el usuario. Por favor, intenta de nuevo.',
@@ -122,18 +111,35 @@ export default {
         });
       }
     },
+    async obtenerRegional(){
+            try {
+                const response = await axios.get( `${import.meta.env.VITE_APP_API}/regional/obtenerTodos`);
+                this.regionales = response.data
+            } catch (error) {
+                console.error(
+                    "Error al obtener las regionales:",
+                    error.response ? error.response.data : error.message
+
+                );
+            }
+
+        },
     resetForm() {
-      
+
       this.paqueteUsuario = {
         nombre: '',
         usuario: '',
         email: '',
         password: '',
         estrato: '',
-        edad: ''
+        edad: '',
+        regional: '',
       };
-      this.$refs.formRegister.resetValidation(); 
+      this.$refs.formRegister.resetValidation();
     }
+  },
+  created(){
+    this.obtenerRegional();
   }
 }
 </script>
@@ -141,7 +147,7 @@ export default {
 
 <style scoped>
 .contenedor {
-  background-color: #5a9bb9;
+
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -173,7 +179,7 @@ h1 {
 }
 
 .btn {
-  background-color: #5a9bb9;
+  background-color: #25a745;
   color: #f5f5f5;
 }
 </style>
