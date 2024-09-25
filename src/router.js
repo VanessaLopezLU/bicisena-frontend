@@ -9,6 +9,7 @@ import Bicicletas from './components/Bicicletas.vue';
 import AlquilerBici from './components/AlquilerBici.vue';
 import CicloPaseo from './components/CicloPaseo.vue';
 import UbicacionBici from './components/UbicacionBici.vue';
+import Plantilla from './components/Plantilla.vue';
 
 
 
@@ -62,6 +63,12 @@ const routes = [
     path: '/ubicacion-bici',
     name: 'UbicacionBici',
     component: UbicacionBici,
+
+  },
+  {
+    path: '/plantilla',
+    name: 'Plantilla',
+    component: Plantilla,
 
   },
   ];

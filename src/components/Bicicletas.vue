@@ -83,7 +83,7 @@ export default {
             marcas: [],
             regionales: [],
 
-            estado: ["Disponible", "prestada", "Mantenimiento"],
+            estado: ["Disponible", "Alquilada"],
             color: ["Amarrillo", "Rojo", "Azul", "verde", "Naranja", "violeta"],
         };
     },
