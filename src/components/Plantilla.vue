@@ -1,9 +1,10 @@
 <template>
     <v-app>
       <!-- Barra de Navegación -->
-      <v-app-bar color="primary" dark>
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-        <v-toolbar-title>Mi Aplicación Vuetify 3</v-toolbar-title>
+      <v-app-bar class="bar" dark>
+        <img src="/src/assets/sena.png" alt="">
+        
+        <v-toolbar-title>BiciSena</v-toolbar-title>
       </v-app-bar>
   
       <!-- Contenedor Principal -->
@@ -76,7 +77,7 @@
       </v-main>
   
       <!-- Pie de página -->
-      <v-footer app class="pa-4" color="primary" dark>
+      <v-footer app class=" footer pa-4"  dark>
         <span class="white--text">&copy; 2024 Mi Aplicación</span>
       </v-footer>
     </v-app>
@@ -114,6 +115,13 @@
   </script>
   
   <style scoped>
+  .bar {
+    background: radial-gradient(
+    circle,
+    rgb(174, 238, 190) 0%,
+    rgb(7, 180, 50) 100%
+  );
+  }
   h1 {
     font-family: "Cambria", serif;
     font-weight: bold;
