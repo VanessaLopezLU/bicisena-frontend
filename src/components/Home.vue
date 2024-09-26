@@ -2,20 +2,18 @@
   <v-app>
     <!-- Barra de Navegación -->
     <v-app-bar class="bar" dark height="100px">
-      <img src="/src/assets/sena.png" alt="" />
+      <img src="/src/assets/sena.png" alt="Sena Logo" />
 
       <!-- Título actualizado -->
       <v-toolbar-title class="ti white--text d-flex align-center">
-        Pedaleando juntos hacia un futuro sostenible.
+        Pedaleando juntos hacia un futuro sostenible
       </v-toolbar-title>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-icon class="login-icon" v-bind="attrs" v-on="on" @click="goToLogin"
-            >mdi-login
-          </v-icon>
-        </template>
-        <span>Login</span>
-      </v-tooltip>
+
+      <!-- Ícono de Logout -->
+      <v-spacer></v-spacer>
+      <v-btn icon @click="logout">
+        <v-icon>mdi-logout</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -23,8 +21,14 @@
         <v-row class="cartas mt-10">
           <v-col cols="12" md="4" v-for="i in 2" :key="i">
             <v-card class="pa-4" elevation="4">
-              <v-card-title>Tarjeta {{ i }}</v-card-title>
-              <v-card-text>Contenido de la tarjeta número {{ i }}</v-card-text>
+              <v-card-title>CicloPaseos {{ i }}</v-card-title>
+              <v-card-text
+                >Disfruta de la naturaleza con BiciSENA {{ i }}</v-card-text
+              >
+              <v-card-text>26-09-2024 {{ i }}</v-card-text>
+              <v-card-actions>
+                <v-btn @click="goToLogin"> Suscribirse </v-btn>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
@@ -38,18 +42,13 @@
 </template>
 
 <script>
+import CicloPaseo from "./CicloPaseo.vue";
+
 export default {
   data() {
     return {
       validForm: false, // Valida el formulario
-      formData: {
-        nombre: "", // Nombre del usuario
-        email: "", // Correo del usuario
-      },
-      paqueteUsuario: {
-        email: null,
-        password: null,
-      },
+      CicloPaseo: [],
     };
   },
   methods: {
@@ -61,6 +60,19 @@ export default {
         this.resetForm();
       }
     },
+    async obtenerCicloPaseo() {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API}/ciclopaseos/obtenerTodos`
+        );
+        this.CicloPaseos = response.data;
+      } catch (error) {
+        console.error(
+          "Error al obtener las regionales:",
+          error.response ? error.response.data : error.message
+        );
+      }
+    },
     resetForm() {
       this.formData.nombre = "";
       this.formData.email = "";
@@ -68,6 +80,13 @@ export default {
     },
     goToLogin() {
       this.$router.push({ name: "InicioSesion" });
+    },
+    logout() {
+      // Destruir el token en el almacenamiento local o sesión
+      localStorage.removeItem("token"); // Si guardaste el token en sessionStorage, usa sessionStorage.removeItem("token");
+
+      // Redirigir al usuario a la página de inicio de sesión
+      this.$router.push("/inicio");
     },
   },
 };
@@ -119,9 +138,10 @@ h1 {
 }
 
 .v-btn {
-  background-color: #3f51b5;
+  background-color: #247e18;
   color: white;
   font-weight: bold;
+  width: 10px;
 }
 
 .pa-6 {
