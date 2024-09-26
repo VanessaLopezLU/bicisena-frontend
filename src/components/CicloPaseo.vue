@@ -1,7 +1,7 @@
 <template>
     <v-app>
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="6" style="margin-top: 90px; margin-left: 200px;">
           <v-card class="pa-4" elevation="10">
             <v-card-title class="text-center">
               <h1 class="text-center mb-4">Ciclo Paseo</h1>

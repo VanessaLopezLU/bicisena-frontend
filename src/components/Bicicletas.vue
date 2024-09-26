@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-row class="justify-center">
+        <v-row class="justify-center" style="margin-top: 70px;">
             <v-col cols="12" md="6">
                 <v-card class="pa-4" elevation="10">
                     <v-card-title class="text-center"> 
