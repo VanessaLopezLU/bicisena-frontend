@@ -8,6 +8,7 @@ const store = createStore({
     return {
       usuario: null,
       token: null,
+
     };
   },
   mutations: {
@@ -25,7 +26,7 @@ const store = createStore({
   actions: {
     async login({ commit }, credentials) {
       try {
-        const response = await axios.post('/login', credentials);
+        const response = await axios.post('/auth/login', credentials);
         const { data } = response;
         commit('setToken', data.access_token);
         commit('setUser', data.usuario);
@@ -49,6 +50,9 @@ const store = createStore({
     getRole(state) {
       return state.usuario?.role || null;
     },
+    getRegional(state) {
+      return state.usuario?.regional || null;
+    }
   },
   plugins: [createPersistedState()],
 });

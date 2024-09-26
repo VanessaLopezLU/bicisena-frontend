@@ -12,6 +12,7 @@ import UbicacionBici from './components/UbicacionBici.vue';
 import Home from './components/Home.vue';
 import Administracion from './components/Administracion.vue';
 import MostrarBici from './components/MostrarBici.vue';
+import Graficos from './components/Graficos.vue';
 
 
 
@@ -37,7 +38,7 @@ const routes = [
     component: RegisterUsuario
   },
   {
-    path: '/confirmar/:token',
+    path: '/confirmarCuenta/:token',
     name: 'ConfirmaCuenta',
     component: ConfirmarCuenta,
 
@@ -90,7 +91,19 @@ const routes = [
         name: 'MostrarBici',
         component: MostrarBici,
 
-      }
+      },
+      {
+        path: 'finanzas',
+        name: 'Finanzas',
+        component: Graficos,
+
+      },
+       {
+    path: 'ubicacion',
+    name: 'UbicacionBici',
+    component: UbicacionBici,
+
+  },
     ]
 
   },

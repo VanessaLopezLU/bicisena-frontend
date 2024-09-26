@@ -1,5 +1,5 @@
 <template>
-  <app>
+  <v-app>
     <v-container class="py-10">
       <v-row class="justify-center">
         <v-col cols="12" md="6">
@@ -35,7 +35,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </app>
+  </v-app>
   </template>
   
   <script>

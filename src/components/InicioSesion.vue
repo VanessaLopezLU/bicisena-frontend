@@ -91,7 +91,7 @@ export default {
         );
 
         Swal.fire("Éxito", "Inicio de sesión exitoso", "success");
-        this.$router.push("/admistracion");
+        this.$router.push("/administracion");
       } catch (error) {
         Swal.fire("Error", "Credenciales incorrectas", "error");
       }
@@ -103,7 +103,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 .btn {
   background-color: #088f1e;
   color: white;

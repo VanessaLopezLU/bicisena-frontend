@@ -12,12 +12,12 @@
       <!-- Ícono de Logout -->
       <v-spacer></v-spacer>
       <v-btn icon @click="logout">
-        <v-icon>mdi-logout</v-icon>
+        <v-icon color="white">mdi-logout</v-icon> <!-- Cambia "white" por el color deseado -->
       </v-btn>
     </v-app-bar>
 
     <v-main>
-      <v-container class="pa-6">
+      <v-container class="pa-8">
         <v-row class="cartas mt-10">
           <v-col cols="12" md="4" v-for="i in 2" :key="i">
             <v-card class="pa-4" elevation="4">
@@ -27,8 +27,11 @@
               >
               <v-card-text>26-09-2024 {{ i }}</v-card-text>
               <v-card-actions>
-                <v-btn @click="goToLogin"> Suscribirse </v-btn>
-              </v-card-actions>
+  <v-btn class="mt-6 btn-centered" @click="goToLogin">
+    Suscribirse
+  </v-btn>
+</v-card-actions>
+
             </v-card>
           </v-col>
         </v-row>
@@ -42,7 +45,8 @@
 </template>
 
 <script>
-import CicloPaseo from "./CicloPaseo.vue";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -52,14 +56,6 @@ export default {
     };
   },
   methods: {
-    enviarFormulario() {
-      if (this.$refs.form.validate()) {
-        alert(
-          `Formulario enviado: ${this.formData.nombre}, ${this.formData.email}`
-        );
-        this.resetForm();
-      }
-    },
     async obtenerCicloPaseo() {
       try {
         const response = await axios.get(
@@ -72,11 +68,6 @@ export default {
           error.response ? error.response.data : error.message
         );
       }
-    },
-    resetForm() {
-      this.formData.nombre = "";
-      this.formData.email = "";
-      this.$refs.form.resetValidation();
     },
     goToLogin() {
       this.$router.push({ name: "InicioSesion" });
@@ -93,6 +84,17 @@ export default {
 </script>
 
 <style scoped>
+.btn-centered {
+  background-color: green;
+  color: white;
+  margin: 0 auto; /* Para centrar horizontalmente */
+  display: block; /* Asegura que el botón se comporte como un bloque */
+  font-weight: bold; /* Para que el texto sea más llamativo */
+}
+
+.mt-6 {
+  margin-top: 24px; /* Margen superior para separar el botón de otros elementos */
+}
 .bar {
   background: radial-gradient(
     circle,
@@ -115,13 +117,13 @@ export default {
 }
 
 .custom-height {
-  height: 120px; /* Ajusta el valor según la altura deseada */
+  height: 120px;
 }
 
 h1 {
   font-family: "Cambria", serif;
   font-weight: bold;
-  color: #3f51b5; /* Primary color de Vuetify */
+  color: #3f51b5;
 }
 
 .v-footer {
@@ -130,21 +132,24 @@ h1 {
 }
 .pa-6 {
   padding: 24px;
+  width: 20px;
 }
+
 
 .login-icon {
-  margin-right: 40px; /* Ajusta el margen derecho del ícono */
-  font-size: 36px; /* Aumenta el tamaño del ícono */
+  margin-right: 40px;
+  font-size: 36px;
 }
 
-.v-btn {
-  background-color: #247e18;
-  color: white;
-  font-weight: bold;
-  width: 10px;
+
+
+.v-btn.green {
+  background-color: green !important;
 }
 
-.pa-6 {
-  padding: 24px;
+.white--text {
+  color: white !important;
 }
 </style>
+
+

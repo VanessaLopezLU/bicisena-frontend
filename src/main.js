@@ -24,6 +24,7 @@ app.use(VueAxios, axios)
 
 
 app.use(router);
+
 registerPlugins(app)
 
 app.mount('#app')

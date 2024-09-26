@@ -56,9 +56,21 @@ export default {
         },
         {
           title: "Regional",
-          icon: "mdi-city", // Ícono de ciudad
+          icon: "mdi-city", 
           ruta: "/administracion/regional",
-          color: "green", // Color verde
+          color: "green", 
+        },
+        {
+          title: "Finanzas",
+          icon: "mdi-cash",
+          ruta: "/administracion/finanzas",
+          color: "green",
+        },
+        {
+          title: "Mapa",
+          icon: "mdi-map", 
+          ruta: "/administracion/ubicacion", 
+          color: "green",
         },
       ],
     };
