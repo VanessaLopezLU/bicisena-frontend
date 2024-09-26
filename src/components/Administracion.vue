@@ -48,31 +48,45 @@ export default {
     return {
       drawer: true,
       items: [
-        {
-          title: "Bicicletas",
-          icon: "mdi-bike", // Ícono de bicicleta
-          ruta: "/administracion/bicicletas",
-          color: "green", // Color verde
-        },
-        {
-          title: "Regional",
-          icon: "mdi-city", 
-          ruta: "/administracion/regional",
-          color: "green", 
-        },
-        {
-          title: "Finanzas",
-          icon: "mdi-cash",
-          ruta: "/administracion/finanzas",
-          color: "green",
-        },
-        {
-          title: "Mapa",
-          icon: "mdi-map", 
-          ruta: "/administracion/ubicacion", 
-          color: "green",
-        },
-      ],
+  {
+    title: "Bicicletas",
+    icon: "mdi-bike", // Ícono de bicicleta
+    ruta: "/administracion/bicicletas",
+    color: "green",
+  },
+  {
+    title: "Regional",
+    icon: "mdi-city", 
+    ruta: "/administracion/regional",
+    color: "green",
+  },
+ 
+  {
+    title: "Mapa",
+    icon: "mdi-map", 
+    ruta: "/administracion/ubicacion", 
+    color: "green",
+  },
+  {
+    title: "Alquiler",
+    icon: "mdi-bicycle", // Ícono de alquiler de bicicleta
+    ruta: "/administracion/alquiler",
+    color: "green",
+  },
+  {
+    title: "Ciclo Paseo",
+    icon: "mdi-bike-fast", // Ícono de ciclo paseo
+    ruta: "/administracion/ciclo-paseo",
+    color: "green",
+  },
+  {
+    title: "Marca Bici",
+    icon: "mdi-bike", // Ícono para marcas de bicicletas
+    ruta: "/administracion/marca-bici",
+    color: "green",
+  },
+]
+
     };
   },
   computed: {
@@ -86,11 +100,7 @@ export default {
   },
   methods: {
     logout() {
-      // Llamar a la acción logout en el store
-      this.$store.dispatch("logout");
-
-      // Redirigir a la página de inicio de sesión
-      this.$router.push("/inicio");
+      this.$router.push("/");
     },
   },
 };

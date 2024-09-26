@@ -92,18 +92,32 @@ const routes = [
         component: MostrarBici,
 
       },
-      {
-        path: 'finanzas',
-        name: 'Finanzas',
-        component: Graficos,
-
-      },
+     
        {
     path: 'ubicacion',
     name: 'UbicacionBici',
     component: UbicacionBici,
 
   },
+  {
+    path: 'marca-bici',
+    name: 'Bicicletas',
+    component: Bicicletas,
+
+  },
+  {
+    path: 'alquiler',
+    name: 'Alquiler',
+    component: AlquilerBici,
+
+  },
+  {
+    path: 'ciclo-paseo',
+    name: 'CicloPaseo',
+    component: CicloPaseo,
+
+  },
+
     ]
 
   },
