@@ -9,8 +9,9 @@ import Bicicletas from './components/Bicicletas.vue';
 import AlquilerBici from './components/AlquilerBici.vue';
 import CicloPaseo from './components/CicloPaseo.vue';
 import UbicacionBici from './components/UbicacionBici.vue';
-import Plantilla from './components/Plantilla.vue';
-
+import Home from './components/Home.vue';
+import Administracion from './components/Administracion.vue';
+import MostrarBici from './components/MostrarBici.vue';
 
 
 
@@ -21,6 +22,12 @@ import Plantilla from './components/Plantilla.vue';
 const routes = [
   {
     path: '/',
+    name: 'Home',
+    component: Home,
+
+  },
+  {
+    path: '/inicio',
     name: 'InicioSesion',
     component: InicioSesion
   },
@@ -65,10 +72,26 @@ const routes = [
     component: UbicacionBici,
 
   },
+ 
   {
-    path: '/plantilla',
-    name: 'Plantilla',
-    component: Plantilla,
+    path: '/administracion',
+    name: 'Administracion',
+    component:  Administracion,
+    children: [
+     
+      {
+        path: 'regional',
+        name: 'Regional',
+        component: Regional,
+
+      },
+      {
+        path: 'bicicletas',
+        name: 'MostrarBici',
+        component: MostrarBici,
+
+      }
+    ]
 
   },
   ];

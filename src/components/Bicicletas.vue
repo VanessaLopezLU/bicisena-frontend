@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <row class="justify-center">
+        <v-row class="justify-center">
             <v-col cols="12" md="6">
                 <v-card class="pa-4" elevation="10">
                     <v-card-title class="text-center"> 
@@ -59,7 +59,7 @@
                     </v-card-text>
                 </v-card>
             </v-col>
-        </row>
+        </v-row>
     </v-app>
 </template>
 <script>

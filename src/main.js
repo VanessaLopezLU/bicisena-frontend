@@ -22,6 +22,7 @@ import { createApp } from 'vue'
 const app = createApp(App)
 app.use(VueAxios, axios)
 
+
 app.use(router);
 registerPlugins(app)
 

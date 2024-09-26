@@ -1,25 +1,14 @@
 <template>
-  <v-app>
-    
-    <v-toolbar
-     style="width: 50%;"
-    >
-    <img src="/src/assets/logosena.png" alt="">
+  <v-app
+    ><v-app-bar class="bar" dark height="100px">
+      <img src="/src/assets/sena.png" alt="" />
 
-      <v-toolbar-title>Vuetify</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-export</v-icon>
-      </v-btn>
-    </v-toolbar>
- 
-  <v-container class="contenedor py-10">
-    <div>
-      
-    </div>
-      
+      <!-- Título actualizado -->
+      <v-toolbar-title class="ti white--text d-flex align-center">
+        Pedaleando juntos hacia un futuro sostenible.
+      </v-toolbar-title>
+    </v-app-bar>
+    <v-container class="contenedor py-10">
       <v-row class="justify-center">
         <v-col cols="12" sm="8" md="6" lg="4">
           <v-card class="pa-6" elevation="10">
@@ -28,31 +17,31 @@
             </v-card-title>
             <v-card-text>
               <v-form ref="formLogin" lazy-validation>
-                <v-text-field 
-                  v-model="paqueteUsuario.email" 
-                  label="Email" 
-                  outlined 
-                  dense 
+                <v-text-field
+                  v-model="paqueteUsuario.email"
+                  label="Email"
+                  outlined
+                  dense
                   clearable
                   prepend-inner-icon="mdi-account"
                   color="black"
                   class="text-black"
-                  :rules="[v => !!v || 'Usuario es requerido']"
+                  :rules="[(v) => !!v || 'Usuario es requerido']"
                 ></v-text-field>
-  
-                <v-text-field 
-                  v-model="paqueteUsuario.password" 
-                  label="Contraseña" 
-                  outlined 
-                  dense 
+
+                <v-text-field
+                  v-model="paqueteUsuario.password"
+                  label="Contraseña"
+                  outlined
+                  dense
                   clearable
                   prepend-inner-icon="mdi-lock"
                   type="password"
                   color="black"
                   class="text-black"
-                  :rules="[v => !!v || 'Contraseña es requerida']"
+                  :rules="[(v) => !!v || 'Contraseña es requerida']"
                 ></v-text-field>
-  
+
                 <v-card-actions class="justify-center">
                   <v-btn class="btn" @click="loginUser" block>
                     <v-icon left>mdi-login</v-icon>Ingresar
@@ -60,7 +49,7 @@
                 </v-card-actions>
               </v-form>
             </v-card-text>
-  
+
             <v-card-actions class="justify-center">
               <span class="no-account-text">¿No tienes una cuenta?</span>
               <v-btn color="#27ae60 " @click="goToRegister">
@@ -72,85 +61,78 @@
       </v-row>
     </v-container>
   </v-app>
-   
-   
-  </template>
-  
-  <script>
-  import axios from 'axios';
-  import Swal from 'sweetalert2';
-  
-  export default {
-    data() {
-      return {
-        paqueteUsuario: {
-          email: null,
-          password: null,
-        },
-        validLogin: false,
-        passwordRules: [(v) => !!v || 'La contraseña es requerida']
-      };
-    },
-    methods: {
-      async loginUser() {
-        // Validar el formulario antes de proceder
-        const isValid = this.$refs.formLogin.validate();
-        if (!isValid) return;
-  
-        try {
-          const response = await axios.post(`${import.meta.env.VITE_APP_API}/auth/login`,
-            this.paqueteUsuario
-          );
-          
+</template>
 
-          
-          Swal.fire('Éxito', 'Inicio de sesión exitoso', 'success');
-          this.$router.push('/cargar-datos')
-          
-        } catch (error) {
-          Swal.fire('Error', 'Credenciales incorrectas', 'error');
-        }
+<script>
+import axios from "axios";
+import Swal from "sweetalert2";
+
+export default {
+  data() {
+    return {
+      paqueteUsuario: {
+        email: null,
+        password: null,
       },
-      goToRegister() {
-        this.$router.replace('/registrarse'); 
+      validLogin: false,
+      passwordRules: [(v) => !!v || "La contraseña es requerida"],
+    };
+  },
+  methods: {
+    async loginUser() {
+      // Validar el formulario antes de proceder
+      const isValid = this.$refs.formLogin.validate();
+      if (!isValid) return;
+
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_APP_API}/auth/login`,
+          this.paqueteUsuario
+        );
+
+        Swal.fire("Éxito", "Inicio de sesión exitoso", "success");
+        this.$router.push("/admistracion");
+      } catch (error) {
+        Swal.fire("Error", "Credenciales incorrectas", "error");
       }
-    }
-  }
-  </script>
-  
-  <style scoped>
-  
-  
-  .btn {
-    background-color: #088f1e;
-    color: white;
-  }
-  
-  h1 {
-    font-family: 'Cambria', serif;
-    color: black;
-  }
-  
-  .v-card {
-    background-color: #f5f5f5;
-    border-radius: 15px;
-  }
-  
-  .v-text-field {
-    margin-bottom: 16px;
-  }
-  
-  .v-text-field .v-input__control {
-    color: black;
-  }
-  
-  .v-btn {
-    font-weight: bold;
-  }
-  
-  .no-account-text {
-    color: black;
-    margin-right: 8px;
-  }
-  </style>
-  
+    },
+    goToRegister() {
+      this.$router.replace("/registrarse");
+    },
+  },
+};
+</script>
+
+<style scoped>
+.btn {
+  background-color: #088f1e;
+  color: white;
+}
+
+h1 {
+  font-family: "Cambria", serif;
+  color: black;
+}
+
+.v-card {
+  background-color: #f5f5f5;
+  border-radius: 15px;
+}
+
+.v-text-field {
+  margin-bottom: 16px;
+}
+
+.v-text-field .v-input__control {
+  color: black;
+}
+
+.v-btn {
+  font-weight: bold;
+}
+
+.no-account-text {
+  color: black;
+  margin-right: 8px;
+}
+</style>
